@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+@import '~@angular/material/theming';
+
+$disabled: rgba(0, 0, 0, .26);
+
+mat-card {
+    margin: 10px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
