@@ -19,6 +19,7 @@ export class AppNavigationComponent implements OnInit {
   public get versionDescription(): string {
     return environment.version;
   }
+
   public appNavigationEntries: AppNavigationEntry[] = [];
 
   public isRouterLoading = false;

@@ -14,7 +14,7 @@ export class UserMenuComponent implements OnInit {
   }
 
   public get isUserAuthenticated$(): Observable<boolean> {
-    return of(false);
+    return this.oidcSecurityService.getIsAuthorized();
   }
 
   public isAuthenticated: boolean;

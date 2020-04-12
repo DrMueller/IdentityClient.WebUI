@@ -18,7 +18,6 @@ export class AccountInfoComponent implements OnInit {
     private oicd: OidcSecurityService) { }
 
   ngOnInit(): void {
-    debugger;
     this.oicd.getUserData().subscribe(data => {
       this.userProperties = [];
       const props = Object.getOwnPropertyNames(data);
