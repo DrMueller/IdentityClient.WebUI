@@ -7,3 +7,20 @@
     {{ prop }}
   </li>
 </ul>
+
+
+<button mat-stroked-button color="primary" (click)="callClientApi()">
+  Call Client API
+</button>
+
+Weather API:
+<ul>
+  <li *ngFor="let weather of weatherForecasts">
+    {{ weather.summary }}
+  </li>
+</ul>
+
+<br />
+
+Weather API Error:
+{{ weatherApiErrorMessage }}

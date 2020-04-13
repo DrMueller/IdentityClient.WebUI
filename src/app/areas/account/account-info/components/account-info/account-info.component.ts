@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { Observable } from 'rxjs';
+import { HttpService } from 'src/app/core/http/services';
+import { IWeatherForecast } from '../../models';
 
 @Component({
   selector: 'app-account-info',
@@ -10,12 +12,16 @@ import { Observable } from 'rxjs';
 export class AccountInfoComponent implements OnInit {
   public userProperties: string[] = [];
 
+  public weatherForecasts: IWeatherForecast[];
+  public weatherApiErrorMessage: string;
+
   public get isAuthorized$(): Observable<boolean> {
     return this.oicd.getIsAuthorized();
   }
 
   public constructor(
-    private oicd: OidcSecurityService) { }
+    private oicd: OidcSecurityService,
+    private httpService: HttpService) { }
 
   ngOnInit(): void {
     this.oicd.getUserData().subscribe(data => {
@@ -30,5 +36,14 @@ export class AccountInfoComponent implements OnInit {
         });
       }
     });
+  }
+
+  public callClientApi(): void {
+    this.httpService.get$<IWeatherForecast[]>('weatherforecast').subscribe(sr => {
+      this.weatherForecasts = sr;
+    },
+      (error: any) => {
+        this.weatherApiErrorMessage = error.message;
+      });
   }
 }

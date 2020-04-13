@@ -8,7 +8,7 @@ import { AppSettingsSingletonService } from '../../app-settings/services';
   providedIn: 'root'
 })
 
-export abstract class HttpBaseService {
+export class HttpService {
   public constructor(
     private httpClient: HttpClient,
     private appSettingsSingleton: AppSettingsSingletonService) { }
@@ -47,11 +47,8 @@ export abstract class HttpBaseService {
     return this.httpClient.put<T>(completeUrl, body, requestOptions);
   }
 
-  protected abstract getResourceUrl(): string;
-
   private createCompleteUrl(relativeUrl?: string | number): string {
     let result = this.appSettingsSingleton.instance.serverBaseUrl;
-    result = result + this.getResourceUrl() + '/';
 
     if (relativeUrl) {
       result += relativeUrl;

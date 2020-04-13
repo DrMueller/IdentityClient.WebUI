@@ -7,12 +7,6 @@
       <span>Navigation</span>
     </mat-toolbar>
     <div>
-      <mat-nav-list>
-        <span *ngFor="let nav of appNavigationEntries">
-          <a (click)="toggleSideNav()" [class.disabled-area]="!(nav.isActive$ | async)" mat-list-item class="nav-link" routerLinkActive="active"
-            [routerLink]="nav.baseUrl">{{ nav.displayText }}</a>
-        </span>
-      </mat-nav-list>
       <mat-divider></mat-divider>
       <mat-list>
         <mat-list-item>
